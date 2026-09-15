@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  --color-paper: #f7faf8;
+  --color-surface: #e7efe8;
+  --color-ink: #16241c;
+
+  --color-teal: #3f6e58;
+  --color-teal-dark: #2e5443;
+  --color-teal-light: #d9e8de;
+
+  --color-gold: #8fcfc4;
+  --color-gold-dark: #6bb0a3;
+  --color-gold-light: #e4f5f1;
+
+  --color-line: #d3ded6;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-accent: "Playfair Display", serif;
+
+  --radius-ticket: 1rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+}
+
+/* Borde punteado tipo perforación de ticket, reutilizado en vez del
+   card-con-sombra genérico */
+.ticket-edge {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    theme(colors.line) 0,
+    theme(colors.line) 6px,
+    transparent 6px,
+    transparent 14px
+  );
+  width: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid theme(colors.teal.DEFAULT);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
